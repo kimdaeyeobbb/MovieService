@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="root"></div>
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+
+<!--코드를 변환해주는 babel을 이용해서 브라우저가 JSX를 이해할 수 있도록 수정하도록 하자-->
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    const root = document.getElementById("root")
+    let counter = 0;
+    function countUp() {
+        counter += 1
+        render()
+    }
+
+    function render(){
+        ReactDOM.render(<Container/>, root)
+        // Container를 리렌더링함 -> Container내에서 부른 함수가 호출되므로 count가 업데이트 됨
+    }
+
+    function Container() {
+        return (
+            <div>
+                <h3>총 클릭수: {counter}</h3>
+                <button onClick={countUp}>클릭해주세요!!!!!!!!</button>
+            </div>
+        )
+    }
+
+    render()
+    // ReactDOM.render(<Container/>, root)
+    // 어플리케이션이 시작될 때 Container를 렌더링함
+    // Container를 렌더링하고 나서 root에 담음
+    // 막 페이지가 로드되고나서 렌더링된 Container는 counter값으로 0을 가짐
+</script>
+</html>

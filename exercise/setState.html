@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="root"></div>
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+
+<!--코드를 변환해주는 babel을 이용해서 브라우저가 JSX를 이해할 수 있도록 수정하도록 하자-->
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    const root = document.getElementById("root")
+    function App() {
+        const [counter, setCounter] = React.useState(0);
+        // React.useState 함수는 counter와 같은 데이터를 숫자형 데이터로 건네줌
+        // 그 옆에는 데이터 값을 바꿀 함수도 함께 줌
+        // 그리고 그 함수를 이용해서 데이터 값이 바뀌면 컴포넌트도 동시에 리렌더링 됨
+        const onClick = () => {
+            // setCounter(counter+1)
+            // 새 counter값을 가지고 함수를 호출
+            // setCounter는 리렌더링을 일으킴
+
+
+            setCounter((current) => current+1)
+            // 위 작업과 똑같은 역할을 수행
+            // 하지만 이 방법이 더 명시적으로 확인이된다 (current가 현재 값이라는 것을 보장)
+            // state값이 현재값을 기반으로 새로이 도출됨을 확인할 수 있다
+        }
+        return (
+            <div>
+                <h3>총 클릭수: {counter}</h3>
+                <button onClick={onClick}>클릭부탁!!</button>
+            </div>
+        )
+    }
+
+    ReactDOM.render(<App/>, root);
+</script>
+</html>
